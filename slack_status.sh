@@ -27,7 +27,7 @@ EOF
 }
 
 . ~/.slack-status
-if ! $SHOULD_SET_SLACK_STATUS_TO_ONLY_MUSIC; then
+if ! $SLACK_UPDATE_MUSIC_ON; then
     exit 0
 fi
 
@@ -35,7 +35,7 @@ STATUS=$(osascript -e '
 tell application "Music"
 	if player state = playing then
 		local status
-		set status to " 💽 " & album of current track & " 🎤 " & album artist of current track as string
+		set status to " 💽 " & album of current track & " 🎤 " & artist of current track as string
 		local possibleStatus
 		set possibleStatus to name of current track & status
 		if length of possibleStatus > 99 then
